@@ -1,0 +1,60 @@
+{
+  "name": "@wllm/sassdoc-parser",
+  "version": "1.0.0",
+  "engines": {
+    "node": ">=14"
+  },
+  "description": "If you're looking for just the parser from SassDoc, this is it",
+  "keywords": [
+    "sassdoc"
+  ],
+  "homepage": "https://github.com/wkillerud/sassdoc-parser#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wkillerud/sassdoc-parser.git"
+  },
+  "bugs": {
+    "url": "https://github.com/wkillerud/sassdoc-parser"
+  },
+  "files": [
+    "dist"
+  ],
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "webpack --mode production --devtool hidden-source-map",
+    "dev": "webpack --mode development --watch",
+    "lint": "eslint",
+    "test": "jest",
+    "lint-staged": "lint-staged",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "src/**/*.ts": [
+      "eslint --fix"
+    ],
+    "src/**/*.{ts,json,css}": [
+      "prettier --write"
+    ]
+  },
+  "author": "William Killerud <william@killerud.com> (https://www.somewhatstationery.dev/)",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "^27.5.0",
+    "@typescript-eslint/eslint-plugin": "^5.23.0",
+    "@typescript-eslint/parser": "^5.23.0",
+    "eslint": "^8.15.0",
+    "eslint-config-import": "^0.13.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "husky": "^8.0.1",
+    "jest": "^28.1.0",
+    "lint-staged": "^12.4.1",
+    "prettier": "^2.6.2",
+    "ts-jest": "^28.0.2",
+    "ts-loader": "^9.3.0",
+    "webpack": "^5.72.1",
+    "webpack-cli": "^4.9.2"
+  }
+}
