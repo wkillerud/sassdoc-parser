@@ -31,7 +31,8 @@
     "lint": "eslint 'src/**/*.ts'",
     "test": "jest",
     "lint-staged": "lint-staged",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "prepublishOnly": "npm run build && npm run lint && npm run test"
   },
   "lint-staged": {
     "src/**/*.ts": [
