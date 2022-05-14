@@ -1,12 +1,14 @@
 {
-  "name": "@wllm/sassdoc-parser",
+  "name": "scss-sassdoc-parser",
   "version": "1.0.0",
   "engines": {
     "node": ">=14"
   },
-  "description": "If you're looking for just the parser from SassDoc, this is it",
+  "description": "A more lightweight parser for SassDoc in SCSS files, with TypeScript definitions.",
   "keywords": [
-    "sassdoc"
+    "sassdoc",
+    "scss",
+    "sass"
   ],
   "homepage": "https://github.com/wkillerud/sassdoc-parser#readme",
   "repository": {
@@ -22,9 +24,11 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "webpack --mode production --devtool hidden-source-map",
-    "dev": "webpack --mode development --watch",
-    "lint": "eslint",
+    "clean": "rimraf dist",
+    "build": "npm run clean && npm run compile",
+    "compile": "tsc",
+    "dev": "tsc -w",
+    "lint": "eslint 'src/**/*.ts'",
     "test": "jest",
     "lint-staged": "lint-staged",
     "prepare": "husky install"
@@ -33,7 +37,7 @@
     "src/**/*.ts": [
       "eslint --fix"
     ],
-    "src/**/*.{ts,json,css}": [
+    "src/**/*.{md,ts,json,css}": [
       "prettier --write"
     ]
   },
@@ -41,10 +45,10 @@
   "license": "MIT",
   "devDependencies": {
     "@types/jest": "^27.5.0",
+    "@types/lodash.uniq": "^4.5.7",
     "@typescript-eslint/eslint-plugin": "^5.23.0",
     "@typescript-eslint/parser": "^5.23.0",
     "eslint": "^8.15.0",
-    "eslint-config-import": "^0.13.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-prettier": "^4.0.0",
@@ -52,9 +56,14 @@
     "jest": "^28.1.0",
     "lint-staged": "^12.4.1",
     "prettier": "^2.6.2",
+    "rimraf": "^3.0.2",
     "ts-jest": "^28.0.2",
-    "ts-loader": "^9.3.0",
-    "webpack": "^5.72.1",
+    "typescript": "^4.6.4",
     "webpack-cli": "^4.9.2"
+  },
+  "dependencies": {
+    "lodash.uniq": "^4.5.0",
+    "scss-comment-parser": "^0.8.4",
+    "strip-indent": "^3.0.0"
   }
 }
