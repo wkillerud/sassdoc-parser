@@ -7,8 +7,8 @@ on:
 
 jobs:
   test:
+    runs-on: ubuntu-latest
     strategy:
-      strategy:
       matrix:
         version: [
             14, # Maintenance LTS
