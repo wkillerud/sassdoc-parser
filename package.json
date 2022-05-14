@@ -28,7 +28,7 @@
     "build": "npm run clean && npm run compile",
     "compile": "tsc",
     "dev": "tsc -w",
-    "lint": "eslint",
+    "lint": "eslint 'src/**/*.ts'",
     "test": "jest",
     "lint-staged": "lint-staged",
     "prepare": "husky install"
@@ -49,7 +49,6 @@
     "@typescript-eslint/eslint-plugin": "^5.23.0",
     "@typescript-eslint/parser": "^5.23.0",
     "eslint": "^8.15.0",
-    "eslint-config-import": "^0.13.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-prettier": "^4.0.0",
