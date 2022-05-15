@@ -103,7 +103,7 @@ export interface ParseResult {
   output?: string;
   parameter?: Parameter[];
   property?: Property[];
-  require: Require[];
+  require?: Require[];
   return?: Return;
   see?: ParseResult[];
   since?: Since[];
