@@ -47,6 +47,14 @@ class Parser {
     ) as Array<ParseResult>;
     data = sorter(data);
 
+    data = data.map((d) => {
+      if (!d.name) {
+        // Give everything a default name from context
+        d.name = d.context.name;
+      }
+      return d;
+    });
+
     const promises: Array<Promise<void>> = [];
     Object.keys(this.annotations.list).forEach((key: string) => {
       const annotation = this.annotations.list[key as BuiltInAnnotationNames];

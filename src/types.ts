@@ -99,6 +99,9 @@ export interface ParseResult {
   group?: string[];
   ignore?: string[];
   link?: Link[];
+  /**
+   * The value of the name annotation if set, or the name of the function/mixin/variable as declared in the code.
+   */
   name?: string;
   output?: string;
   parameter?: Parameter[];

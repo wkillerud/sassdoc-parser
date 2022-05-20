@@ -88,6 +88,7 @@ test("parses a decked out function", async () => {
         "group": Array [
           "helpers",
         ],
+        "name": "to-length",
         "parameter": Array [
           Object {
             "description": "Value to add unit to",
@@ -128,6 +129,7 @@ test("parses a decked out function", async () => {
             "group": Array [
               "undefined",
             ],
+            "name": "yet-another-item",
             "require": Array [],
           },
         ],
@@ -162,6 +164,7 @@ test("parses a decked out function", async () => {
         "group": Array [
           "undefined",
         ],
+        "name": "other-item",
         "require": Array [],
       },
       Object {
@@ -186,6 +189,7 @@ test("parses a decked out function", async () => {
         "group": Array [
           "undefined",
         ],
+        "name": "yet-another-item",
         "require": Array [],
       },
     ]
@@ -247,6 +251,7 @@ $valley: #000000;
         "group": Array [
           "tokens",
         ],
+        "name": "stardew",
         "see": Array [
           Object {
             "access": "public",
@@ -268,6 +273,7 @@ $valley: #000000;
             "group": Array [
               "undefined",
             ],
+            "name": "valley",
             "todo": Array [
               "Document me",
             ],
@@ -302,6 +308,7 @@ $valley: #000000;
         "group": Array [
           "undefined",
         ],
+        "name": "stardew-alias",
         "todo": Array [
           "Document me",
         ],
@@ -326,6 +333,7 @@ $valley: #000000;
         "group": Array [
           "undefined",
         ],
+        "name": "valley",
         "todo": Array [
           "Document me",
         ],
@@ -381,6 +389,7 @@ test("parses a decked out mixin", async () => {
         "group": Array [
           "undefined",
         ],
+        "name": "_keep-it-secret",
         "output": "Sets display to hidden",
       },
       Object {
@@ -408,6 +417,7 @@ test("parses a decked out mixin", async () => {
         "group": Array [
           "undefined",
         ],
+        "name": "_keep-it-safe",
       },
       Object {
         "access": "private",
@@ -431,6 +441,7 @@ test("parses a decked out mixin", async () => {
         "group": Array [
           "undefined",
         ],
+        "name": "_ring-is",
         "parameter": Array [
           Object {
             "default": "here",
@@ -472,6 +483,7 @@ test("reads things from a path", async () => {
         "group": Array [
           "undefined",
         ],
+        "name": "valley",
         "todo": Array [
           "Document me",
         ],
@@ -508,6 +520,7 @@ test("reads things from an array of paths", async () => {
         "group": Array [
           "undefined",
         ],
+        "name": "valley",
         "todo": Array [
           "Document me",
         ],
@@ -532,10 +545,25 @@ test("reads things from an array of paths", async () => {
         "group": Array [
           "undefined",
         ],
+        "name": "stardew",
         "todo": Array [
           "Document me",
         ],
       },
     ]
   `);
+});
+
+test("gives a default name that can be overridden with the @name annotation", async () => {
+  const result = await parseString(/* scss */ `
+/// This is a test
+$primary-color: #000000;
+
+/// This is a test
+/// @name wants-to-be-the-primary-color
+$secondary-color: #000000;
+`);
+  expect(result[0].name).toEqual("primary-color");
+  expect(result[1].name).toEqual("wants-to-be-the-primary-color");
+  expect(result[1].context.name).toEqual("secondary-color");
 });
