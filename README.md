@@ -48,12 +48,13 @@ import { parseString } from "scss-sassdoc-parser";
 
 async function doParse() {
   const result = await parseString(`
-/// Keeps it secret
-/// @output Sets display to hidden
-@mixin _keep-it-secret {
-  display: hidden;
+    /// Keeps it secret
+    /// @output Sets display to hidden
+    @mixin _keep-it-secret {
+      display: hidden;
+    }
+  `);
 }
-`);
 
 doParse();
 ```

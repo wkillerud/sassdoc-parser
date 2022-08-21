@@ -1,0 +1,10 @@
+.main {
+  padding: var(--ifm-footer-padding-vertical)
+    var(--ifm-footer-padding-horizontal);
+}
+
+@media screen and (max-width: 996px) {
+  .main {
+    --ifm-footer-padding-horizontal: 0;
+  }
+}
