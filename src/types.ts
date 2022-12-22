@@ -32,15 +32,15 @@ export type Link = {
 };
 
 export type Parameter = {
-  type: string;
   name: string;
+  type?: string;
   default?: string;
   description?: string;
 };
 
 export type Property = {
-  type: string;
   path: string;
+  type?: string;
   name?: string;
   default?: string;
   description?: string;
@@ -69,7 +69,7 @@ export type Return = {
 
 export type See = {
   name: string;
-  type: string;
+  type?: string;
   description?: string;
   context?: Context;
 };
