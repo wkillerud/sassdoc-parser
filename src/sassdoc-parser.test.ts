@@ -42,33 +42,33 @@ test("parses a decked out function", async () => {
 `);
 
   expect(result).toMatchInlineSnapshot(`
-    Array [
-      Object {
+    [
+      {
         "access": "public",
         "alias": "other-item",
-        "author": Array [
+        "author": [
           "Just Testing",
         ],
-        "commentRange": Object {
+        "commentRange": {
           "end": 13,
           "start": 2,
         },
-        "context": Object {
+        "context": {
           "code": "
       $units: (
-        \\"px\\": 1px,
-        \\"rem\\": 1rem,
-        \\"%\\": 1%,
-        \\"em\\": 1em,
+        "px": 1px,
+        "rem": 1rem,
+        "%": 1%,
+        "em": 1em,
       );
 
       @if not index(map-keys($units), $unit) {
-          $_: log(\\"Invalid unit #{$unit}.\\");
+          $_: log("Invalid unit #{$unit}.");
       }
 
       @return $value * map.get($units, $unit);
     ",
-          "line": Object {
+          "line": {
             "end": 27,
             "start": 14,
           },
@@ -78,46 +78,46 @@ test("parses a decked out function", async () => {
         "deprecated": "Prefer other-item",
         "description": "Example trying to max out the number of annotations so we don't need so many test cases
     ",
-        "example": Array [
-          Object {
-            "code": "to-length($number, \\"%\\")",
+        "example": [
+          {
+            "code": "to-length($number, "%")",
             "description": "unit",
             "type": "Add",
           },
         ],
-        "group": Array [
+        "group": [
           "helpers",
         ],
         "name": "to-length",
-        "parameter": Array [
-          Object {
+        "parameter": [
+          {
             "description": "Value to add unit to",
             "name": "value",
             "type": "Number",
           },
-          Object {
+          {
             "description": "String representation of the unit",
             "name": "unit",
             "type": "String",
           },
         ],
-        "require": Array [],
-        "return": Object {
+        "require": [],
+        "return": {
           "description": "$value expressed in $unit",
           "type": "Number",
         },
-        "see": Array [
-          Object {
+        "see": [
+          {
             "access": "public",
-            "commentRange": Object {
+            "commentRange": {
               "end": 34,
               "start": 34,
             },
-            "context": Object {
+            "context": {
               "code": "
       @return $value;
     ",
-              "line": Object {
+              "line": {
                 "end": 37,
                 "start": 35,
               },
@@ -126,33 +126,33 @@ test("parses a decked out function", async () => {
             },
             "description": "Yet another item
     ",
-            "group": Array [
+            "group": [
               "undefined",
             ],
             "name": "yet-another-item",
-            "require": Array [],
+            "require": [],
           },
         ],
-        "since": Array [
-          Object {
+        "since": [
+          {
             "version": "1.0.0",
           },
         ],
       },
-      Object {
+      {
         "access": "public",
-        "aliased": Array [
+        "aliased": [
           "to-length",
         ],
-        "commentRange": Object {
+        "commentRange": {
           "end": 29,
           "start": 29,
         },
-        "context": Object {
+        "context": {
           "code": "
       @return $value;
     ",
-          "line": Object {
+          "line": {
             "end": 32,
             "start": 30,
           },
@@ -161,23 +161,23 @@ test("parses a decked out function", async () => {
         },
         "description": "Other item
     ",
-        "group": Array [
+        "group": [
           "undefined",
         ],
         "name": "other-item",
-        "require": Array [],
+        "require": [],
       },
-      Object {
+      {
         "access": "public",
-        "commentRange": Object {
+        "commentRange": {
           "end": 34,
           "start": 34,
         },
-        "context": Object {
+        "context": {
           "code": "
       @return $value;
     ",
-          "line": Object {
+          "line": {
             "end": 37,
             "start": 35,
           },
@@ -186,11 +186,11 @@ test("parses a decked out function", async () => {
         },
         "description": "Yet another item
     ",
-        "group": Array [
+        "group": [
           "undefined",
         ],
         "name": "yet-another-item",
-        "require": Array [],
+        "require": [],
       },
     ]
   `);
@@ -218,19 +218,19 @@ $valley: #000000;
 `);
 
   expect(result).toMatchInlineSnapshot(`
-    Array [
-      Object {
+    [
+      {
         "access": "public",
         "alias": "stardew-alias",
-        "author": Array [
+        "author": [
           "Just Testing",
         ],
-        "commentRange": Object {
+        "commentRange": {
           "end": 11,
           "start": 2,
         },
-        "context": Object {
-          "line": Object {
+        "context": {
+          "line": {
             "end": 12,
             "start": 12,
           },
@@ -242,25 +242,25 @@ $valley: #000000;
         "deprecated": "Prefer valley",
         "description": "Example trying to max out the number of annotations so we don't need so many test cases
     ",
-        "example": Array [
-          Object {
+        "example": [
+          {
             "code": "font-color: $stardew;",
             "type": "scss",
           },
         ],
-        "group": Array [
+        "group": [
           "tokens",
         ],
         "name": "stardew",
-        "see": Array [
-          Object {
+        "see": [
+          {
             "access": "public",
-            "commentRange": Object {
+            "commentRange": {
               "end": 17,
               "start": 17,
             },
-            "context": Object {
-              "line": Object {
+            "context": {
+              "line": {
                 "end": 18,
                 "start": 18,
               },
@@ -270,32 +270,32 @@ $valley: #000000;
               "value": "#000000",
             },
             "description": "",
-            "group": Array [
+            "group": [
               "undefined",
             ],
             "name": "valley",
-            "todo": Array [
+            "todo": [
               "Document me",
             ],
           },
         ],
-        "since": Array [
-          Object {
+        "since": [
+          {
             "version": "1.0.0",
           },
         ],
       },
-      Object {
+      {
         "access": "public",
-        "aliased": Array [
+        "aliased": [
           "stardew",
         ],
-        "commentRange": Object {
+        "commentRange": {
           "end": 14,
           "start": 14,
         },
-        "context": Object {
-          "line": Object {
+        "context": {
+          "line": {
             "end": 15,
             "start": 15,
           },
@@ -305,22 +305,22 @@ $valley: #000000;
           "value": "#fcfcfc",
         },
         "description": "",
-        "group": Array [
+        "group": [
           "undefined",
         ],
         "name": "stardew-alias",
-        "todo": Array [
+        "todo": [
           "Document me",
         ],
       },
-      Object {
+      {
         "access": "public",
-        "commentRange": Object {
+        "commentRange": {
           "end": 17,
           "start": 17,
         },
-        "context": Object {
-          "line": Object {
+        "context": {
+          "line": {
             "end": 18,
             "start": 18,
           },
@@ -330,11 +330,11 @@ $valley: #000000;
           "value": "#000000",
         },
         "description": "",
-        "group": Array [
+        "group": [
           "undefined",
         ],
         "name": "valley",
-        "todo": Array [
+        "todo": [
           "Document me",
         ],
       },
@@ -366,18 +366,18 @@ test("parses a decked out mixin", async () => {
 `);
 
   expect(result).toMatchInlineSnapshot(`
-    Array [
-      Object {
+    [
+      {
         "access": "private",
-        "commentRange": Object {
+        "commentRange": {
           "end": 3,
           "start": 2,
         },
-        "context": Object {
+        "context": {
           "code": "
       display: hidden;
     ",
-          "line": Object {
+          "line": {
             "end": 6,
             "start": 4,
           },
@@ -386,26 +386,26 @@ test("parses a decked out mixin", async () => {
         },
         "description": "Keeps it secret
     ",
-        "group": Array [
+        "group": [
           "undefined",
         ],
         "name": "_keep-it-secret",
         "output": "Sets display to hidden",
       },
-      Object {
+      {
         "access": "private",
-        "commentRange": Object {
+        "commentRange": {
           "end": 9,
           "start": 8,
         },
         "content": "Wraps in media query for print",
-        "context": Object {
+        "context": {
           "code": "
       @media print {
         @content;
       }
     ",
-          "line": Object {
+          "line": {
             "end": 14,
             "start": 10,
           },
@@ -414,22 +414,22 @@ test("parses a decked out mixin", async () => {
         },
         "description": "Keeps it safe
     ",
-        "group": Array [
+        "group": [
           "undefined",
         ],
         "name": "_keep-it-safe",
       },
-      Object {
+      {
         "access": "private",
-        "commentRange": Object {
+        "commentRange": {
           "end": 17,
           "start": 16,
         },
-        "context": Object {
+        "context": {
           "code": "
       content: $where;
     ",
-          "line": Object {
+          "line": {
             "end": 20,
             "start": 18,
           },
@@ -438,19 +438,19 @@ test("parses a decked out mixin", async () => {
         },
         "description": "Where is the ring?
     ",
-        "group": Array [
+        "group": [
           "undefined",
         ],
         "name": "_ring-is",
-        "parameter": Array [
-          Object {
+        "parameter": [
+          {
             "default": "here",
             "description": "Tell us where it is",
             "name": "where",
             "type": "String",
           },
         ],
-        "require": Array [],
+        "require": [],
       },
     ]
   `);
@@ -462,15 +462,15 @@ test("reads things from a path", async () => {
   );
 
   expect(result).toMatchInlineSnapshot(`
-    Array [
-      Object {
+    [
+      {
         "access": "public",
-        "commentRange": Object {
+        "commentRange": {
           "end": 1,
           "start": 1,
         },
-        "context": Object {
-          "line": Object {
+        "context": {
+          "line": {
             "end": 2,
             "start": 2,
           },
@@ -480,11 +480,11 @@ test("reads things from a path", async () => {
           "value": "#000000",
         },
         "description": "",
-        "group": Array [
+        "group": [
           "undefined",
         ],
         "name": "valley",
-        "todo": Array [
+        "todo": [
           "Document me",
         ],
       },
@@ -499,15 +499,15 @@ test("reads things from an array of paths", async () => {
   ]);
 
   expect(result).toMatchInlineSnapshot(`
-    Array [
-      Object {
+    [
+      {
         "access": "public",
-        "commentRange": Object {
+        "commentRange": {
           "end": 1,
           "start": 1,
         },
-        "context": Object {
-          "line": Object {
+        "context": {
+          "line": {
             "end": 2,
             "start": 2,
           },
@@ -517,22 +517,22 @@ test("reads things from an array of paths", async () => {
           "value": "#000000",
         },
         "description": "",
-        "group": Array [
+        "group": [
           "undefined",
         ],
         "name": "valley",
-        "todo": Array [
+        "todo": [
           "Document me",
         ],
       },
-      Object {
+      {
         "access": "public",
-        "commentRange": Object {
+        "commentRange": {
           "end": 1,
           "start": 1,
         },
-        "context": Object {
-          "line": Object {
+        "context": {
+          "line": {
             "end": 2,
             "start": 2,
           },
@@ -542,11 +542,11 @@ test("reads things from an array of paths", async () => {
           "value": "#000000",
         },
         "description": "",
-        "group": Array [
+        "group": [
           "undefined",
         ],
         "name": "stardew",
-        "todo": Array [
+        "todo": [
           "Document me",
         ],
       },
