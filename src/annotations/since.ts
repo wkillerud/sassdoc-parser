@@ -1,4 +1,4 @@
-import { Since } from "../types";
+import { Since } from "../types.js";
 
 const sinceRegEx = /\s*([^\s]*)\s*(?:-?\s*([\s\S]*))?\s*$/;
 

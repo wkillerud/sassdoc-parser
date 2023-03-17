@@ -1,4 +1,4 @@
-import { ParseResult, Return } from "../types";
+import { ParseResult, Return } from "../types.js";
 
 const typeRegEx = /^\s*(?:\{(.*)\})?\s*(?:-?\s*([\s\S]*))?/;
 

@@ -1,4 +1,4 @@
-import { ParseResult, Require } from "../types";
+import { ParseResult, Require } from "../types.js";
 
 const reqRegEx =
   /^\s*(?:\{(.*)\})?\s*(?:(\$?[^\s]+))?\s*(?:-?\s*([^<$]*))?\s*(?:<?\s*(.*)\s*>)?$/;

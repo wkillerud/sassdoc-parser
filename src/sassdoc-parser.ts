@@ -1,12 +1,12 @@
-import fs from "fs/promises";
+import * as fs from "fs/promises";
 import ScssCommentParser, {
-  Annotations,
-  ParserConfig,
+  type Annotations,
+  type ParserConfig,
 } from "scss-comment-parser";
 import stripIndent from "strip-indent";
-import AnnotationsApi, { BuiltInAnnotationNames } from "./annotation";
-import sorter from "./sorter";
-import { ParseResult } from "./types";
+import AnnotationsApi, { type BuiltInAnnotationNames } from "./annotation.js";
+import sorter from "./sorter.js";
+import type { ParseResult } from "./types.js";
 
 class Parser {
   annotations: AnnotationsApi;

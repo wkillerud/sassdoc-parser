@@ -1,6 +1,6 @@
-import path from "path";
+import * as path from "path";
 import { test, expect } from "vitest";
-import { parse, parseString } from "./sassdoc-parser";
+import { parse, parseString } from "./sassdoc-parser.js";
 
 test("parses a decked out function", async () => {
   const result = await parseString(/* scss */ `

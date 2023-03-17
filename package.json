@@ -1,8 +1,8 @@
 {
   "name": "scss-sassdoc-parser",
-  "version": "1.0.5",
+  "version": "2.0.0",
   "engines": {
-    "node": ">=14"
+    "node": ">=16"
   },
   "description": "A more lightweight parser for SassDoc in SCSS files, with TypeScript definitions.",
   "keywords": [
@@ -21,8 +21,13 @@
   "files": [
     "dist"
   ],
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/sassdoc-parser.js",
+      "types": "./dist/sassdoc-parser.d.ts"
+    }
+  },
   "scripts": {
     "clean": "rimraf dist",
     "build": "npm run clean && npm run compile",
@@ -45,7 +50,6 @@
   "author": "William Killerud <william@killerud.com> (https://www.somewhatstationery.dev/)",
   "license": "MIT",
   "devDependencies": {
-    "@types/jest": "^29.2.5",
     "@types/lodash.uniq": "^4.5.7",
     "@typescript-eslint/eslint-plugin": "^5.23.0",
     "@typescript-eslint/parser": "^5.23.0",
@@ -56,14 +60,13 @@
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
     "prettier": "^2.6.2",
-    "rimraf": "^3.0.2",
-    "typescript": "^4.6.4",
-    "webpack-cli": "^4.9.2"
+    "rimraf": "^4.4.0",
+    "typescript": "^5.0.0",
+    "vitest": "^0.29.3"
   },
   "dependencies": {
     "lodash.uniq": "^4.5.0",
     "scss-comment-parser": "^0.8.4",
-    "strip-indent": "^3.0.0",
-    "vitest": "^0.29.3"
+    "strip-indent": "^4.0.0"
   }
 }

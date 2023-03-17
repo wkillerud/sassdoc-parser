@@ -1,17 +1,17 @@
 {
   "compilerOptions": {
-    "target": "es2020",
+    "target": "ESNext",
     "isolatedModules": true,
-    "lib": ["es2020"],
-    "module": "commonjs",
-    "moduleResolution": "node",
-    "esModuleInterop": true,
+    "lib": ["ESNext"],
+    "module": "ESNext",
+    "moduleResolution": "nodenext",
     "noUnusedLocals": true,
+    "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
     "strict": true,
     "declaration": true,
     "rootDir": "src",
-    "outDir": "dist"
+    "outDir": "dist/"
   },
   "exclude": ["src/**/*.test.ts"]
 }

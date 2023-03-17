@@ -1,4 +1,4 @@
-import { ParseResult } from "../types";
+import type { ParseResult } from "../types.d.js";
 
 export default function content() {
   return {

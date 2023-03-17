@@ -1,4 +1,4 @@
-import { Property } from "../types";
+import { Property } from "../types.js";
 
 const reqRegEx =
   /\s*(?:{(.*)})?\s*(?:(\$?\S+))?\s*(?:\[([^\]]*)])?\s*-?\s*([\S\s]*)\s*$/;

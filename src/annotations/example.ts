@@ -8,7 +8,7 @@
  */
 
 import stripIndent from "strip-indent";
-import { Example } from "../types";
+import { Example } from "../types.js";
 const descRegEx = /(\w+)\s*(?:-?\s*(.*))/;
 
 export default function example() {
