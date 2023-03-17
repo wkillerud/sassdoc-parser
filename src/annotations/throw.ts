@@ -1,5 +1,5 @@
 import uniq from "lodash.uniq";
-import type { ParseResult } from "../types.d.js";
+import type { ParseResult } from "../types.js";
 
 const autoParserError = /@error\s+(?:'|")([^'"]+)/g;
 

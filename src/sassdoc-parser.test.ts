@@ -1,9 +1,8 @@
-import * as path from "path";
 import { test, expect } from "vitest";
-import { parse, parseString } from "./sassdoc-parser.js";
+import { parse } from "./sassdoc-parser.js";
 
 test("parses a decked out function", async () => {
-  const result = await parseString(/* scss */ `
+  const result = await parse(/* scss */ `
 /// Example trying to max out the number of annotations so we don't need so many test cases
 /// @param {Number} $value - Value to add unit to
 /// @param {String} $unit - String representation of the unit
@@ -198,7 +197,7 @@ test("parses a decked out function", async () => {
 });
 
 test("parses a decked out variable", async () => {
-  const result = await parseString(/* scss */ `
+  const result = await parse(/* scss */ `
 /// Example trying to max out the number of annotations so we don't need so many test cases
 /// @access public
 /// @deprecated Prefer valley
@@ -344,7 +343,7 @@ $valley: #000000;
 });
 
 test("parses a decked out mixin", async () => {
-  const result = await parseString(/* scss */ `
+  const result = await parse(/* scss */ `
 /// Keeps it secret
 /// @output Sets display to hidden
 @mixin _keep-it-secret {
@@ -457,106 +456,8 @@ test("parses a decked out mixin", async () => {
   `);
 });
 
-test("reads things from a path", async () => {
-  const result = await parse(
-    path.join(__dirname, "sassdoc-parser.fixture.scss"),
-  );
-
-  expect(result).toMatchInlineSnapshot(`
-    [
-      {
-        "access": "public",
-        "commentRange": {
-          "end": 1,
-          "start": 1,
-        },
-        "context": {
-          "line": {
-            "end": 2,
-            "start": 2,
-          },
-          "name": "valley",
-          "scope": "private",
-          "type": "variable",
-          "value": "#000000",
-        },
-        "description": "",
-        "group": [
-          "undefined",
-        ],
-        "name": "valley",
-        "todo": [
-          "Document me",
-        ],
-      },
-    ]
-  `);
-});
-
-test("reads things from an array of paths", async () => {
-  const result = await parse([
-    path.join(__dirname, "sassdoc-parser.fixture.scss"),
-    path.join(__dirname, "sassdoc-parser-two.fixture.scss"),
-  ]);
-
-  expect(result).toMatchInlineSnapshot(`
-    [
-      {
-        "access": "public",
-        "commentRange": {
-          "end": 1,
-          "start": 1,
-        },
-        "context": {
-          "line": {
-            "end": 2,
-            "start": 2,
-          },
-          "name": "valley",
-          "scope": "private",
-          "type": "variable",
-          "value": "#000000",
-        },
-        "description": "",
-        "group": [
-          "undefined",
-        ],
-        "name": "valley",
-        "todo": [
-          "Document me",
-        ],
-      },
-      {
-        "access": "public",
-        "commentRange": {
-          "end": 1,
-          "start": 1,
-        },
-        "context": {
-          "line": {
-            "end": 2,
-            "start": 2,
-          },
-          "name": "stardew",
-          "scope": "private",
-          "type": "variable",
-          "value": "#000000",
-        },
-        "description": "",
-        "group": [
-          "undefined",
-        ],
-        "name": "stardew",
-        "todo": [
-          "Document me",
-        ],
-      },
-    ]
-  `);
-});
-
 test("gives a default name that can be overridden with the @name annotation", async () => {
-  const result = await parseString(/* scss */ `
+  const result = await parse(/* scss */ `
 /// This is a test
 $primary-color: #000000;
 

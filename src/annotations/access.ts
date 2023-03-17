@@ -1,4 +1,4 @@
-import type { ParseResult } from "../types.d.js";
+import type { ParseResult } from "../types.js";
 
 export default function access() {
   const defaultPrivatePrefixTest = RegExp.prototype.test.bind(/^[_-]/);

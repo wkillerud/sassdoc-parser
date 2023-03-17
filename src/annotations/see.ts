@@ -1,4 +1,4 @@
-import type { ParseResult } from "../types.d.js";
+import type { ParseResult } from "../types.js";
 
 const seeRegEx = /\s*(?:\{([\w-_]+)\}\s*)?(.*)/;
 
