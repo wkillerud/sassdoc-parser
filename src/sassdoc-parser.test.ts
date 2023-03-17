@@ -1,4 +1,5 @@
 import path from "path";
+import { test, expect } from "vitest";
 import { parse, parseString } from "./sassdoc-parser";
 
 test("parses a decked out function", async () => {
@@ -56,14 +57,14 @@ test("parses a decked out function", async () => {
         "context": {
           "code": "
       $units: (
-        "px": 1px,
-        "rem": 1rem,
-        "%": 1%,
-        "em": 1em,
+        \\"px\\": 1px,
+        \\"rem\\": 1rem,
+        \\"%\\": 1%,
+        \\"em\\": 1em,
       );
 
       @if not index(map-keys($units), $unit) {
-          $_: log("Invalid unit #{$unit}.");
+          $_: log(\\"Invalid unit #{$unit}.\\");
       }
 
       @return $value * map.get($units, $unit);
@@ -80,7 +81,7 @@ test("parses a decked out function", async () => {
     ",
         "example": [
           {
-            "code": "to-length($number, "%")",
+            "code": "to-length($number, \\"%\\")",
             "description": "unit",
             "type": "Add",
           },
