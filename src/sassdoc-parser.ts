@@ -1,12 +1,11 @@
-import fs from "fs/promises";
 import ScssCommentParser, {
-  Annotations,
-  ParserConfig,
+  type Annotations,
+  type ParserConfig,
 } from "scss-comment-parser";
 import stripIndent from "strip-indent";
-import AnnotationsApi, { BuiltInAnnotationNames } from "./annotation";
-import sorter from "./sorter";
-import { ParseResult } from "./types";
+import AnnotationsApi, { type BuiltInAnnotationNames } from "./annotation.js";
+import sorter from "./sorter.js";
+import type { ParseResult } from "./types.js";
 
 class Parser {
   annotations: AnnotationsApi;
@@ -21,23 +20,6 @@ class Parser {
     this.scssParser.commentParser.on("warning", (warning: Error) => {
       console.warn(warning.message);
     });
-  }
-
-  async parse(
-    path: string | string[],
-    id?: string,
-    options: ReadFileOptions = "utf-8",
-  ): Promise<ParseResult[]> {
-    const paths = Array.isArray(path) ? path : [path];
-
-    const result = await Promise.all(
-      paths.map(async (src) => {
-        const code = await fs.readFile(src, options);
-        return await this.parseString(code, id);
-      }),
-    );
-
-    return result.flat();
   }
 
   async parseString(code: string, id?: string): Promise<ParseResult[]> {
@@ -69,48 +51,7 @@ class Parser {
   }
 }
 
-type ReadFileOptions =
-  | ({
-      encoding: BufferEncoding;
-      flag?: number | string | undefined;
-    } & {
-      /**
-       * When provided the corresponding `AbortController` can be used to cancel an asynchronous action.
-       */
-      signal?: AbortSignal | undefined;
-    })
-  | BufferEncoding;
-
 export type ParseOptions = {
-  id?: string;
-  parserConfig?: ParserConfig;
-  readFileOptions?: ReadFileOptions;
-};
-
-/**
- * Try to parse the SassDoc in the given file (or files)
- *
- * @example
- *  // Parse a single file
- *  const result = await parse(
- *    path.join(__dirname, "_mixins.scss"),
- *  );
- * @example
- *  // Parse multiple files
- *  const result = await parse([
- *    path.join(__dirname, "_mixins.scss"),
- *    path.join(__dirname, "_functions.scss"),
- *  ]);
- */
-export async function parse(
-  path: string | string[],
-  options?: ParseOptions,
-): Promise<Array<ParseResult>> {
-  const parser = new Parser(options?.parserConfig);
-  return await parser.parse(path, options?.id, options?.readFileOptions);
-}
-
-export type ParseStringOptions = {
   id?: string;
   parserConfig?: ParserConfig;
 };
@@ -119,14 +60,14 @@ export type ParseStringOptions = {
  * Try to parse any SassDoc in the SCSS input
  *
  * @example
- *  await parseString(`
+ *  await parse(`
  *    /// Main color
  *    $stardew: #ffffff;
  *  `);
  */
-export async function parseString(
+export async function parse(
   code: string,
-  options?: ParseStringOptions,
+  options?: ParseOptions,
 ): Promise<Array<ParseResult>> {
   const parser = new Parser(options?.parserConfig);
   return await parser.parseString(code, options?.id);

@@ -1,7 +1,6 @@
 {
   "recommendations": [
     "bierner.comment-tagged-templates",
-    "orta.vscode-jest",
     "esbenp.prettier-vscode",
     "dbaeumer.vscode-eslint"
   ]
