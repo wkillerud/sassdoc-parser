@@ -7,8 +7,8 @@
  * <div></div>
  */
 
-import stripIndent from "strip-indent";
 import { Example } from "../types.js";
+import { removeReduntantWhitespace } from "../utils.js";
 const descRegEx = /(\w+)\s*(?:-?\s*(.*))/;
 
 export default function example() {
@@ -38,7 +38,7 @@ export default function example() {
 			// Remove all leading/trailing line breaks.
 			instance.code = instance.code.replace(/^\n|\n$/g, "");
 
-			instance.code = stripIndent(instance.code);
+			instance.code = removeReduntantWhitespace(instance.code);
 
 			return instance;
 		},

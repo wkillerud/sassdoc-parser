@@ -1,6 +1,6 @@
 {
 	"name": "scss-sassdoc-parser",
-	"version": "3.0.0",
+	"version": "2.0.0",
 	"engines": {
 		"node": ">=16"
 	},
@@ -35,7 +35,7 @@
 	},
 	"scripts": {
 		"clean": "rm -rf dist",
-		"build": "npm run clean && npm run compile",
+		"build": "npm run clean && npm run compile && ./postbuild.sh",
 		"compile": "tsc -b ./tsconfig.cjs.json ./tsconfig.esm.json ./tsconfig.types.json",
 		"dev": "tsc -w",
 		"lint": "eslint 'src/**/*.ts'",
@@ -45,7 +45,6 @@
 	"author": "William Killerud <william@killerud.com> (https://www.williamkillerud.com/)",
 	"license": "MIT",
 	"devDependencies": {
-		"@types/lodash.uniq": "^4.5.7",
 		"@typescript-eslint/eslint-plugin": "^6.13.2",
 		"@typescript-eslint/parser": "^6.13.2",
 		"eslint": "^8.15.0",
@@ -57,8 +56,6 @@
 		"vitest": "^1.0.0"
 	},
 	"dependencies": {
-		"lodash.uniq": "^4.5.0",
-		"scss-comment-parser": "^0.8.4",
-		"strip-indent": "^4.0.0"
+		"scss-comment-parser": "^0.8.4"
 	}
 }

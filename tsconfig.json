@@ -2,14 +2,15 @@
 	"compilerOptions": {
 		"target": "ESNext",
 		"isolatedModules": true,
-		"lib": ["ESNext"],
-		"module": "ESNext",
-		"moduleResolution": "nodenext",
+		"lib": ["ESNext", "DOM"],
+		"module": "NodeNext",
+		"moduleResolution": "NodeNext",
 		"noUnusedLocals": true,
 		"noPropertyAccessFromIndexSignature": true,
 		"noImplicitReturns": true,
 		"strict": true,
 		"declaration": true,
+		"esModuleInterop": true,
 		"rootDir": "src",
 		"outDir": "dist/"
 	},

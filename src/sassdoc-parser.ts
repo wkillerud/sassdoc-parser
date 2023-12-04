@@ -2,10 +2,10 @@ import ScssCommentParser, {
 	type Annotations,
 	type ParserConfig,
 } from "scss-comment-parser";
-import stripIndent from "strip-indent";
 import AnnotationsApi, { type BuiltInAnnotationNames } from "./annotation.js";
 import sorter from "./sorter.js";
 import type { ParseResult } from "./types.js";
+import { removeReduntantWhitespace } from "./utils.js";
 
 class Parser {
 	annotations: AnnotationsApi;
@@ -24,7 +24,7 @@ class Parser {
 
 	async parseString(code: string, id?: string): Promise<ParseResult[]> {
 		let data = this.scssParser.parse(
-			stripIndent(code),
+			removeReduntantWhitespace(code),
 			id,
 		) as Array<ParseResult>;
 		data = sorter(data);

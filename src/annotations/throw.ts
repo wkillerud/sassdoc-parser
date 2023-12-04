@@ -1,4 +1,3 @@
-import uniq from "lodash.uniq";
 import type { ParseResult } from "../types.js";
 
 const autoParserError = /@error\s+(?:'|")([^'"]+)/g;
@@ -23,7 +22,8 @@ export default function throwAnnotation() {
 				return;
 			}
 
-			return uniq(throwing);
+			const unique = [...new Set(throwing)];
+			return unique;
 		},
 
 		alias: ["throws", "exception"],
