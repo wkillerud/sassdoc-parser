@@ -1,13 +1,13 @@
 export default function type() {
-  return {
-    name: "type",
+	return {
+		name: "type",
 
-    parse(text: string) {
-      return text.trim();
-    },
+		parse(text: string) {
+			return text.trim();
+		},
 
-    allowedOn: ["variable"],
+		allowedOn: ["variable"],
 
-    multiple: false,
-  };
+		multiple: false,
+	};
 }

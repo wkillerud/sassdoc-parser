@@ -1,25 +1,25 @@
 const linkRegex = /\s*([^:]+:\/\/[^\s]*)?\s*(.*?)$/;
 
 export default function link() {
-  return {
-    name: "link",
+	return {
+		name: "link",
 
-    parse(text: string) {
-      const parsed = linkRegex.exec(text.trim());
+		parse(text: string) {
+			const parsed = linkRegex.exec(text.trim());
 
-      if (!parsed) {
-        return {
-          url: "",
-          caption: "",
-        };
-      }
+			if (!parsed) {
+				return {
+					url: "",
+					caption: "",
+				};
+			}
 
-      return {
-        url: parsed[1] || "",
-        caption: parsed[2] || "",
-      };
-    },
+			return {
+				url: parsed[1] || "",
+				caption: parsed[2] || "",
+			};
+		},
 
-    alias: ["source"],
-  };
+		alias: ["source"],
+	};
 }

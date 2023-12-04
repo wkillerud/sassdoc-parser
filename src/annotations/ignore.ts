@@ -1,9 +1,9 @@
 export default function ignore() {
-  return {
-    name: "ignore",
+	return {
+		name: "ignore",
 
-    parse() {
-      return;
-    },
-  };
+		parse() {
+			return;
+		},
+	};
 }

@@ -1,6 +1,6 @@
 import ScssCommentParser, {
-  type Annotations,
-  type ParserConfig,
+	type Annotations,
+	type ParserConfig,
 } from "scss-comment-parser";
 import stripIndent from "strip-indent";
 import AnnotationsApi, { type BuiltInAnnotationNames } from "./annotation.js";
@@ -8,52 +8,52 @@ import sorter from "./sorter.js";
 import type { ParseResult } from "./types.js";
 
 class Parser {
-  annotations: AnnotationsApi;
-  scssParser: ScssCommentParser;
+	annotations: AnnotationsApi;
+	scssParser: ScssCommentParser;
 
-  constructor(parserConfig?: ParserConfig) {
-    this.annotations = new AnnotationsApi();
-    this.scssParser = new ScssCommentParser(
-      this.annotations.list as unknown as Annotations,
-      parserConfig,
-    );
-    this.scssParser.commentParser.on("warning", (warning: Error) => {
-      console.warn(warning.message);
-    });
-  }
+	constructor(parserConfig?: ParserConfig) {
+		this.annotations = new AnnotationsApi();
+		this.scssParser = new ScssCommentParser(
+			this.annotations.list as unknown as Annotations,
+			parserConfig,
+		);
+		this.scssParser.commentParser.on("warning", (warning: Error) => {
+			console.warn(warning.message);
+		});
+	}
 
-  async parseString(code: string, id?: string): Promise<ParseResult[]> {
-    let data = this.scssParser.parse(
-      stripIndent(code),
-      id,
-    ) as Array<ParseResult>;
-    data = sorter(data);
+	async parseString(code: string, id?: string): Promise<ParseResult[]> {
+		let data = this.scssParser.parse(
+			stripIndent(code),
+			id,
+		) as Array<ParseResult>;
+		data = sorter(data);
 
-    data = data.map((d) => {
-      if (!d.name) {
-        // Give everything a default name from context
-        d.name = d.context.name;
-      }
-      return d;
-    });
+		data = data.map((d) => {
+			if (!d.name) {
+				// Give everything a default name from context
+				d.name = d.context.name;
+			}
+			return d;
+		});
 
-    const promises: Array<Promise<void>> = [];
-    Object.keys(this.annotations.list).forEach((key: string) => {
-      const annotation = this.annotations.list[key as BuiltInAnnotationNames];
+		const promises: Array<Promise<void>> = [];
+		Object.keys(this.annotations.list).forEach((key: string) => {
+			const annotation = this.annotations.list[key as BuiltInAnnotationNames];
 
-      if (annotation.resolve) {
-        const promise = Promise.resolve(annotation.resolve(data));
-        promises.push(promise);
-      }
-    });
+			if (annotation.resolve) {
+				const promise = Promise.resolve(annotation.resolve(data));
+				promises.push(promise);
+			}
+		});
 
-    return Promise.all(promises).then(() => data);
-  }
+		return Promise.all(promises).then(() => data);
+	}
 }
 
 export type ParseOptions = {
-  id?: string;
-  parserConfig?: ParserConfig;
+	id?: string;
+	parserConfig?: ParserConfig;
 };
 
 /**
@@ -66,9 +66,9 @@ export type ParseOptions = {
  *  `);
  */
 export async function parse(
-  code: string,
-  options?: ParseOptions,
+	code: string,
+	options?: ParseOptions,
 ): Promise<Array<ParseResult>> {
-  const parser = new Parser(options?.parserConfig);
-  return await parser.parseString(code, options?.id);
+	const parser = new Parser(options?.parserConfig);
+	return await parser.parseString(code, options?.id);
 }
