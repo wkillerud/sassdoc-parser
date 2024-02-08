@@ -1,40 +1,40 @@
 import type { ParseResult } from "../types.js";
 
 export default function access() {
-  const defaultPrivatePrefixTest = RegExp.prototype.test.bind(/^[_-]/);
+	const defaultPrivatePrefixTest = RegExp.prototype.test.bind(/^[_-]/);
 
-  return {
-    name: "access",
+	return {
+		name: "access",
 
-    parse(text: string) {
-      return text.trim();
-    },
+		parse(text: string) {
+			return text.trim();
+		},
 
-    autofill(item: ParseResult) {
-      if (item.access !== "auto") {
-        return;
-      }
+		autofill(item: ParseResult) {
+			if (item.access !== "auto") {
+				return;
+			}
 
-      if (defaultPrivatePrefixTest(item.context.name)) {
-        return "private";
-      }
+			if (defaultPrivatePrefixTest(item.context.name)) {
+				return "private";
+			}
 
-      return "public";
-    },
+			return "public";
+		},
 
-    resolve(data: ParseResult[]) {
-      data.forEach((item) => {
-        // Ensure valid access when not autofilled.
-        if (item.access === "auto") {
-          item.access = "public";
-        }
-      });
-    },
+		resolve(data: ParseResult[]) {
+			data.forEach((item) => {
+				// Ensure valid access when not autofilled.
+				if (item.access === "auto") {
+					item.access = "public";
+				}
+			});
+		},
 
-    default() {
-      return "auto";
-    },
+		default() {
+			return "auto";
+		},
 
-    multiple: false,
-  };
+		multiple: false,
+	};
 }

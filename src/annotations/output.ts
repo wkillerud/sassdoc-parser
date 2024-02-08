@@ -1,15 +1,15 @@
 export default function output() {
-  return {
-    name: "output",
+	return {
+		name: "output",
 
-    parse(text: string) {
-      return text.trim();
-    },
+		parse(text: string) {
+			return text.trim();
+		},
 
-    alias: ["outputs"],
+		alias: ["outputs"],
 
-    allowedOn: ["mixin"],
+		allowedOn: ["mixin"],
 
-    multiple: false,
-  };
+		multiple: false,
+	};
 }

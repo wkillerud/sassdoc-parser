@@ -7,40 +7,40 @@
  * <div></div>
  */
 
-import stripIndent from "strip-indent";
 import { Example } from "../types.js";
+import { removeReduntantWhitespace } from "../utils.js";
 const descRegEx = /(\w+)\s*(?:-?\s*(.*))/;
 
 export default function example() {
-  return {
-    name: "example",
+	return {
+		name: "example",
 
-    parse(text: string) {
-      const instance: Example = {
-        type: "scss", // Default to `scss`.
-        code: text,
-      };
+		parse(text: string) {
+			const instance: Example = {
+				type: "scss", // Default to `scss`.
+				code: text,
+			};
 
-      // Get the optional type info.
-      const optionalType = text.substr(0, text.indexOf("\n"));
+			// Get the optional type info.
+			const optionalType = text.substr(0, text.indexOf("\n"));
 
-      if (optionalType.trim().length !== 0) {
-        const typeDesc = descRegEx.exec(optionalType);
-        if (typeDesc) {
-          instance.type = typeDesc[1];
-          if (typeDesc[2].length !== 0) {
-            instance.description = typeDesc[2];
-          }
-          instance.code = text.substr(optionalType.length + 1); // Remove the type
-        }
-      }
+			if (optionalType.trim().length !== 0) {
+				const typeDesc = descRegEx.exec(optionalType);
+				if (typeDesc) {
+					instance.type = typeDesc[1];
+					if (typeDesc[2].length !== 0) {
+						instance.description = typeDesc[2];
+					}
+					instance.code = text.substr(optionalType.length + 1); // Remove the type
+				}
+			}
 
-      // Remove all leading/trailing line breaks.
-      instance.code = instance.code.replace(/^\n|\n$/g, "");
+			// Remove all leading/trailing line breaks.
+			instance.code = instance.code.replace(/^\n|\n$/g, "");
 
-      instance.code = stripIndent(instance.code);
+			instance.code = removeReduntantWhitespace(instance.code);
 
-      return instance;
-    },
-  };
+			return instance;
+		},
+	};
 }

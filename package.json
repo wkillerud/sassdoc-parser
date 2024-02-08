@@ -1,75 +1,63 @@
 {
-  "name": "scss-sassdoc-parser",
-  "version": "2.0.0",
-  "engines": {
-    "node": ">=16"
-  },
-  "description": "A more lightweight parser for SassDoc in SCSS files, with TypeScript definitions.",
-  "keywords": [
-    "sassdoc",
-    "scss",
-    "sass"
-  ],
-  "homepage": "https://github.com/wkillerud/sassdoc-parser#readme",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/wkillerud/sassdoc-parser.git"
-  },
-  "bugs": {
-    "url": "https://github.com/wkillerud/sassdoc-parser"
-  },
-  "files": [
-    "dist"
-  ],
-  "type": "module",
-  "exports": {
-    ".": {
-      "import": "./dist/index.js",
-      "types": "./dist/index.d.ts",
-      "default": "./dist/index.js"
-    }
-  },
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "scripts": {
-    "clean": "rimraf dist",
-    "build": "npm run clean && npm run compile",
-    "compile": "tsc",
-    "dev": "tsc -w",
-    "lint": "eslint 'src/**/*.ts'",
-    "test": "vitest",
-    "lint-staged": "lint-staged",
-    "prepare": "husky install",
-    "prepublishOnly": "npm run build && npm run lint && npm run test"
-  },
-  "lint-staged": {
-    "src/**/*.ts": [
-      "eslint --fix"
-    ],
-    "src/**/*.{md,ts,json,css}": [
-      "prettier --write"
-    ]
-  },
-  "author": "William Killerud <william@killerud.com> (https://www.somewhatstationery.dev/)",
-  "license": "MIT",
-  "devDependencies": {
-    "@types/lodash.uniq": "^4.5.7",
-    "@typescript-eslint/eslint-plugin": "^5.23.0",
-    "@typescript-eslint/parser": "^5.23.0",
-    "eslint": "^8.15.0",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-prettier": "^4.0.0",
-    "husky": "^8.0.1",
-    "lint-staged": "^13.0.3",
-    "prettier": "^2.6.2",
-    "rimraf": "^4.4.0",
-    "typescript": "^5.0.0",
-    "vitest": "^0.29.3"
-  },
-  "dependencies": {
-    "lodash.uniq": "^4.5.0",
-    "scss-comment-parser": "^0.8.4",
-    "strip-indent": "^4.0.0"
-  }
+	"name": "scss-sassdoc-parser",
+	"version": "2.0.0",
+	"engines": {
+		"node": ">=20"
+	},
+	"description": "A more lightweight parser for SassDoc in SCSS files, with TypeScript definitions.",
+	"keywords": [
+		"sassdoc",
+		"scss",
+		"sass"
+	],
+	"homepage": "https://github.com/wkillerud/sassdoc-parser#readme",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/wkillerud/sassdoc-parser.git"
+	},
+	"bugs": {
+		"url": "https://github.com/wkillerud/sassdoc-parser"
+	},
+	"files": [
+		"dist"
+	],
+	"type": "module",
+	"main": "./dist/cjs/index.js",
+	"module": "./dist/esm/index.js",
+	"types": "./dist/types/index.d.ts",
+	"exports": {
+		".": {
+			"types": "./dist/types/index.d.ts",
+			"require": "./dist/cjs/index.js",
+			"import": "./dist/esm/index.js",
+			"default": "./dist/esm/index.js"
+		}
+	},
+	"scripts": {
+		"clean": "rm -rf dist",
+		"build": "npm run clean && npm run compile && ./postbuild.sh",
+		"compile": "tsc -b ./tsconfig.cjs.json ./tsconfig.esm.json ./tsconfig.types.json",
+		"dev": "tsc -w",
+		"lint": "eslint 'src/**/*.ts'",
+		"test": "vitest",
+		"prepublishOnly": "npm run build && npm run lint && npm run test"
+	},
+	"author": "William Killerud <william@killerud.com> (https://www.williamkillerud.com/)",
+	"license": "MIT",
+	"devDependencies": {
+		"@semantic-release/github": "^9.2.4",
+		"@typescript-eslint/eslint-plugin": "^6.13.2",
+		"@typescript-eslint/parser": "^6.13.2",
+		"eslint": "^8.15.0",
+		"eslint-config-prettier": "^9.1.0",
+		"eslint-plugin-import": "^2.26.0",
+		"eslint-plugin-prettier": "^5.0.1",
+		"prettier": "^3.1.0",
+		"semantic-release": "^22.0.8",
+		"typescript": "^5.0.0",
+		"vitest": "^1.0.0"
+	},
+	"dependencies": {
+		"scss-comment-parser": "^0.8.4"
+	}
 }

@@ -2,7 +2,7 @@ import { test, expect } from "vitest";
 import { parse } from "./sassdoc-parser.js";
 
 test("parses a decked out function", async () => {
-  const result = await parse(/* scss */ `
+	const result = await parse(/* scss */ `
 /// Example trying to max out the number of annotations so we don't need so many test cases
 /// @param {Number} $value - Value to add unit to
 /// @param {String} $unit - String representation of the unit
@@ -41,7 +41,7 @@ test("parses a decked out function", async () => {
 }
 `);
 
-  expect(result).toMatchInlineSnapshot(`
+	expect(result).toMatchInlineSnapshot(`
     [
       {
         "access": "public",
@@ -56,14 +56,14 @@ test("parses a decked out function", async () => {
         "context": {
           "code": "
       $units: (
-        \\"px\\": 1px,
-        \\"rem\\": 1rem,
-        \\"%\\": 1%,
-        \\"em\\": 1em,
+        "px": 1px,
+        "rem": 1rem,
+        "%": 1%,
+        "em": 1em,
       );
 
       @if not index(map-keys($units), $unit) {
-          $_: log(\\"Invalid unit #{$unit}.\\");
+          $_: log("Invalid unit #{$unit}.");
       }
 
       @return $value * map.get($units, $unit);
@@ -80,7 +80,7 @@ test("parses a decked out function", async () => {
     ",
         "example": [
           {
-            "code": "to-length($number, \\"%\\")",
+            "code": "to-length($number, "%")",
             "description": "unit",
             "type": "Add",
           },
@@ -197,7 +197,7 @@ test("parses a decked out function", async () => {
 });
 
 test("parses a decked out variable", async () => {
-  const result = await parse(/* scss */ `
+	const result = await parse(/* scss */ `
 /// Example trying to max out the number of annotations so we don't need so many test cases
 /// @access public
 /// @deprecated Prefer valley
@@ -217,7 +217,7 @@ $stardew-alias: #fcfcfc;
 $valley: #000000;
 `);
 
-  expect(result).toMatchInlineSnapshot(`
+	expect(result).toMatchInlineSnapshot(`
     [
       {
         "access": "public",
@@ -343,7 +343,7 @@ $valley: #000000;
 });
 
 test("parses a decked out mixin", async () => {
-  const result = await parse(/* scss */ `
+	const result = await parse(/* scss */ `
 /// Keeps it secret
 /// @output Sets display to hidden
 @mixin _keep-it-secret {
@@ -365,7 +365,7 @@ test("parses a decked out mixin", async () => {
 }
 `);
 
-  expect(result).toMatchInlineSnapshot(`
+	expect(result).toMatchInlineSnapshot(`
     [
       {
         "access": "private",
@@ -457,7 +457,7 @@ test("parses a decked out mixin", async () => {
 });
 
 test("gives a default name that can be overridden with the @name annotation", async () => {
-  const result = await parse(/* scss */ `
+	const result = await parse(/* scss */ `
 /// This is a test
 $primary-color: #000000;
 
@@ -465,7 +465,7 @@ $primary-color: #000000;
 /// @name wants-to-be-the-primary-color
 $secondary-color: #000000;
 `);
-  expect(result[0].name).toEqual("primary-color");
-  expect(result[1].name).toEqual("wants-to-be-the-primary-color");
-  expect(result[1].context.name).toEqual("secondary-color");
+	expect(result[0].name).toEqual("primary-color");
+	expect(result[1].name).toEqual("wants-to-be-the-primary-color");
+	expect(result[1].context.name).toEqual("secondary-color");
 });

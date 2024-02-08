@@ -1,11 +1,11 @@
 export default function name() {
-  return {
-    name: "name",
+	return {
+		name: "name",
 
-    parse(text: string) {
-      return text.trim();
-    },
+		parse(text: string) {
+			return text.trim();
+		},
 
-    multiple: false,
-  };
+		multiple: false,
+	};
 }

@@ -1,11 +1,11 @@
 export default function deprecated() {
-  return {
-    name: "deprecated",
+	return {
+		name: "deprecated",
 
-    parse(text: string) {
-      return text.trim();
-    },
+		parse(text: string) {
+			return text.trim();
+		},
 
-    multiple: false,
-  };
+		multiple: false,
+	};
 }

@@ -28,14 +28,14 @@ import fs from "node:fs/promises";
 import { parse } from "scss-sassdoc-parser";
 
 export async function doParse(path: string | string[]): Promise<ParseResult[]> {
-  const paths = Array.isArray(path) ? path : [path];
-  const result = await Promise.all(
-    paths.map(async (src) => {
-      const code = await fs.readFile(src, "utf-8");
-      return await parse(code);
-    }),
-  );
-  return result.flat();
+	const paths = Array.isArray(path) ? path : [path];
+	const result = await Promise.all(
+		paths.map(async (src) => {
+			const code = await fs.readFile(src, "utf-8");
+			return await parse(code);
+		}),
+	);
+	return result.flat();
 }
 
 const singlePathResult = await doParse("_helpers.scss");
