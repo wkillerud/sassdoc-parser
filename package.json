@@ -10,13 +10,13 @@
 		"scss",
 		"sass"
 	],
-	"homepage": "https://github.com/wkillerud/sassdoc-parser#readme",
+	"homepage": "https://github.com/wkillerud/scss-sassdoc-parser#readme",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/wkillerud/sassdoc-parser.git"
+		"url": "https://github.com/wkillerud/scss-sassdoc-parser.git"
 	},
 	"bugs": {
-		"url": "https://github.com/wkillerud/sassdoc-parser"
+		"url": "https://github.com/wkillerud/scss-sassdoc-parser/issues"
 	},
 	"files": [
 		"dist"
