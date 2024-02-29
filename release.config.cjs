@@ -18,6 +18,7 @@ module.exports = {
 				assets: "dist/*.tgz",
 			},
 		],
+		"@semantic-release/git",
 	],
 	preset: "angular",
 };
