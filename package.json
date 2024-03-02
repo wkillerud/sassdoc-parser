@@ -46,6 +46,7 @@
 	"author": "William Killerud <william@killerud.com> (https://www.williamkillerud.com/)",
 	"license": "MIT",
 	"devDependencies": {
+		"@semantic-release/git": "^10.0.1",
 		"@semantic-release/github": "^9.2.4",
 		"@typescript-eslint/eslint-plugin": "^6.13.2",
 		"@typescript-eslint/parser": "^6.13.2",
