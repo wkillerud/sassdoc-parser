@@ -49,6 +49,35 @@ class Parser {
 
 		return Promise.all(promises).then(() => data);
 	}
+
+	parseStringSync(code: string, id?: string): ParseResult[] {
+		let data = this.scssParser.parse(
+			removeReduntantWhitespace(code),
+			id,
+		) as Array<ParseResult>;
+		data = sorter(data);
+
+		data = data.map((d) => {
+			if (!d.name) {
+				// Give everything a default name from context
+				d.name = d.context.name;
+			}
+			return d;
+		});
+
+		Object.keys(this.annotations.list).forEach((key: string) => {
+			const annotation = this.annotations.list[key as BuiltInAnnotationNames];
+
+			if (annotation.resolve) {
+				const result = annotation.resolve(data);
+				if (typeof result !== "undefined") {
+					throw new Error("Tried to resolve an async annotation in parseSync");
+				}
+			}
+		});
+
+		return data;
+	}
 }
 
 export type ParseOptions = {
@@ -71,4 +100,21 @@ export async function parse(
 ): Promise<Array<ParseResult>> {
 	const parser = new Parser(options?.parserConfig);
 	return await parser.parseString(code, options?.id);
+}
+
+/**
+ * Try to parse any SassDoc in the SCSS input
+ *
+ * @example
+ *  parse(`
+ *    /// Main color
+ *    $stardew: #ffffff;
+ *  `);
+ */
+export function parseSync(
+	code: string,
+	options?: ParseOptions,
+): Array<ParseResult> {
+	const parser = new Parser(options?.parserConfig);
+	return parser.parseStringSync(code, options?.id);
 }
