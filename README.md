@@ -42,6 +42,20 @@ const singlePathResult = await doParse("_helpers.scss");
 const arrayOfPathsResult = await doParse(["_mixins.scss", "_functions.scss"]);
 ```
 
+### `parseSync`
+
+```ts
+import { parseSync } from "scss-sassdoc-parser";
+
+const result = parseSync(`
+/// Keeps it secret
+/// @output Sets display to hidden
+@mixin _keep-it-secret {
+  display: hidden;
+}
+`);
+```
+
 ## Output
 
 The result from the `parse` function is an array of [`ParseResult` (type definitions)](/src/types.ts#L87). Check out the [snapshot tests](/src/sassdoc-parser.test.ts) for some example outputs.
