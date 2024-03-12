@@ -21,6 +21,20 @@ async function doParse() {
 doParse();
 ```
 
+Or sync
+
+```ts
+import { parseSync } from "scss-sassdoc-parser";
+
+const result = parseSync(`
+/// Keeps it secret
+/// @output Sets display to hidden
+@mixin _keep-it-secret {
+  display: hidden;
+}
+`);
+```
+
 ### Parse using paths
 
 ```ts
@@ -40,20 +54,6 @@ export async function doParse(path: string | string[]): Promise<ParseResult[]> {
 
 const singlePathResult = await doParse("_helpers.scss");
 const arrayOfPathsResult = await doParse(["_mixins.scss", "_functions.scss"]);
-```
-
-### `parseSync`
-
-```ts
-import { parseSync } from "scss-sassdoc-parser";
-
-const result = parseSync(`
-/// Keeps it secret
-/// @output Sets display to hidden
-@mixin _keep-it-secret {
-  display: hidden;
-}
-`);
 ```
 
 ## Output
