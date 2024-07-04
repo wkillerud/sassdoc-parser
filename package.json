@@ -60,6 +60,6 @@
 		"vitest": "^1.0.0"
 	},
 	"dependencies": {
-		"scss-comment-parser": "^0.8.4"
+		"cdocparser": "0.15.0"
 	}
 }

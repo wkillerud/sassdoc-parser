@@ -1,8 +1,8 @@
+import AnnotationsApi, { type BuiltInAnnotationNames } from "./annotation.js";
 import ScssCommentParser, {
 	type Annotations,
 	type ParserConfig,
-} from "scss-comment-parser";
-import AnnotationsApi, { type BuiltInAnnotationNames } from "./annotation.js";
+} from "./scss-comment-parser.js";
 import sorter from "./sorter.js";
 import type { ParseResult } from "./types.js";
 import { removeReduntantWhitespace } from "./utils.js";
