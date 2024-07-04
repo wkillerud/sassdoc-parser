@@ -56,6 +56,41 @@ const singlePathResult = await doParse("_helpers.scss");
 const arrayOfPathsResult = await doParse(["_mixins.scss", "_functions.scss"]);
 ```
 
+### Indented syntax
+
+The parser can handle indented syntax with a caveat:
+
+- The `context` field will not include accurate `code` or `line` fields.
+
+```js
+import { parseSync } from "scss-sassdoc-parser";
+
+const result = parseSync(
+	`
+/// Converts a value to the given unit
+/// @param {Number} $value - Value to add unit to
+/// @param {String} $unit - String representation of the unit
+/// @return {Number} - $value expressed in $unit
+@function to-length($value, $unit)
+	$units: (
+		"px": 1px,
+		"rem": 1rem,
+		"%": 1%,
+		"em": 1em,
+	)
+
+	@if not index(map-keys($units), $unit)
+			$_: log("Invalid unit #{$unit}.")
+
+	@return $value * map.get($units, $unit)
+`,
+	{ syntax: "indented" },
+);
+```
+
 ## Output
 
-The result from the `parse` function is an array of [`ParseResult` (type definitions)](/src/types.ts#L87). Check out the [snapshot tests](/src/sassdoc-parser.test.ts) for some example outputs.
+The result from the `parse` function is an array of [`ParseResult` (type definitions)](/src/types.ts#L87). Check out the snapshot for some example outputs:
+
+- [Example output for SCSS](/src/sassdoc-parser.test.ts)
+- [Example output for indented](/src/sassdoc-parser-indented.test.ts)

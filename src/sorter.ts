@@ -8,7 +8,7 @@ export default function sort(data: Array<ParseResult>) {
 				b.group?.[0].toLowerCase() || "",
 			) ||
 			compare(a.file?.path || "", b.file?.path || "") ||
-			compare(a.context.line.start, b.context.line.start)
+			compare(a.context.line?.start, b.context.line?.start)
 		);
 	});
 }

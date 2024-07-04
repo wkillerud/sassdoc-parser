@@ -1,8 +1,8 @@
+import annotations from "./annotations/index.js";
 import type {
 	Annotation as ScssCommentParserAnnotation,
 	ParseResult as ScssCommentParserParseResult,
-} from "scss-comment-parser";
-import annotations from "./annotations/index.js";
+} from "./sass-comment-parser.js";
 
 export type BuiltInAnnotationNames =
 	| "access"

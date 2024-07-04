@@ -1,32 +1,35 @@
 import AnnotationsApi, { type BuiltInAnnotationNames } from "./annotation.js";
-import ScssCommentParser, {
+import SassCommentParser, {
 	type Annotations,
 	type ParserConfig,
-} from "./scss-comment-parser.js";
+} from "./sass-comment-parser.js";
 import sorter from "./sorter.js";
 import type { ParseResult } from "./types.js";
 import { removeReduntantWhitespace } from "./utils.js";
 
 class Parser {
 	annotations: AnnotationsApi;
-	scssParser: ScssCommentParser;
+	commentParser: SassCommentParser;
 
 	constructor(parserConfig?: ParserConfig) {
 		this.annotations = new AnnotationsApi();
-		this.scssParser = new ScssCommentParser(
+		this.commentParser = new SassCommentParser(
 			this.annotations.list as unknown as Annotations,
 			parserConfig,
 		);
-		this.scssParser.commentParser.on("warning", (warning: Error) => {
+		this.commentParser.commentParser.on("warning", (warning: Error) => {
 			console.warn(warning.message);
 		});
 	}
 
-	async parseString(code: string, id?: string): Promise<ParseResult[]> {
-		let data = this.scssParser.parse(
+	async parseString(
+		code: string,
+		options?: ParseOptions,
+	): Promise<ParseResult[]> {
+		let data = this.commentParser.parse(
 			removeReduntantWhitespace(code),
-			id,
-		) as Array<ParseResult>;
+			options?.id,
+		);
 		data = sorter(data);
 
 		data = data.map((d) => {
@@ -50,11 +53,11 @@ class Parser {
 		return Promise.all(promises).then(() => data);
 	}
 
-	parseStringSync(code: string, id?: string): ParseResult[] {
-		let data = this.scssParser.parse(
+	parseStringSync(code: string, options?: ParseOptions): ParseResult[] {
+		let data = this.commentParser.parse(
 			removeReduntantWhitespace(code),
-			id,
-		) as Array<ParseResult>;
+			options?.id,
+		);
 		data = sorter(data);
 
 		data = data.map((d) => {
@@ -82,39 +85,50 @@ class Parser {
 
 export type ParseOptions = {
 	id?: string;
+	syntax?: "scss" | "indented";
 	parserConfig?: ParserConfig;
 };
 
 /**
- * Try to parse any SassDoc in the SCSS input
+ * Try to parse any SassDoc in the input
  *
- * @example
+ * @example SCSS
  *  await parse(`
  *    /// Main color
  *    $stardew: #ffffff;
  *  `);
+ * @example Indented
+ *  await parse(`
+ *    /// Main color
+ *    $stardew: #ffffff
+ *  `, { syntax: "indented" });
  */
 export async function parse(
 	code: string,
 	options?: ParseOptions,
 ): Promise<Array<ParseResult>> {
 	const parser = new Parser(options?.parserConfig);
-	return await parser.parseString(code, options?.id);
+	return await parser.parseString(code, options);
 }
 
 /**
- * Try to parse any SassDoc in the SCSS input
+ * Try to parse any SassDoc in the input
  *
  * @example
- *  parse(`
+ *  parseSync(`
  *    /// Main color
  *    $stardew: #ffffff;
  *  `);
+ * @example Indented
+ *  parseSync(`
+ *    /// Main color
+ *    $stardew: #ffffff
+ *  `, { syntax: "indented" });
  */
 export function parseSync(
 	code: string,
 	options?: ParseOptions,
 ): Array<ParseResult> {
 	const parser = new Parser(options?.parserConfig);
-	return parser.parseStringSync(code, options?.id);
+	return parser.parseStringSync(code, options);
 }
