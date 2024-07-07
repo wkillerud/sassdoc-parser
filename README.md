@@ -1,8 +1,6 @@
 # scss-sassdoc-parser
 
-A more lightweight parser for SassDoc.
-
-More or less a thin wrapper around `scss-comment-parser`, but with all SassDoc annotations and TypeScript definitions built in.
+A lightweight parser for SassDoc.
 
 ## Usage
 

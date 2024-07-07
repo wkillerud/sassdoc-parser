@@ -4,7 +4,7 @@
 	"engines": {
 		"node": ">=20"
 	},
-	"description": "A more lightweight parser for SassDoc in SCSS files, with TypeScript definitions.",
+	"description": "A more lightweight parser for SassDoc, with TypeScript definitions.",
 	"keywords": [
 		"sassdoc",
 		"scss",
