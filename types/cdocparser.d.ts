@@ -1,9 +1,7 @@
 /// <reference types="node" />
 
-declare module "scss-comment-parser" {
+declare module "cdocparser" {
 	import { EventEmitter } from "events";
-
-	export default Parser;
 
 	export interface Annotation {
 		name: string;
@@ -17,6 +15,7 @@ declare module "scss-comment-parser" {
 	}
 
 	export interface ParserConfig {
+		syntax?: "scss" | "indented";
 		lineComment?: boolean;
 		blockComment?: boolean;
 		lineCommentStyle?: string;
@@ -51,35 +50,26 @@ declare module "scss-comment-parser" {
 		context: Context;
 	}
 
-	class CommentParser extends EventEmitter {
-		parse(code: string, id?: string): Array<ParseResult>;
+	export class CommentParser extends EventEmitter {
+		constructor(annotations: Annotations, config?: ParserConfig);
+		parse(comments: ExtractedComment[], id?: string): ParseResult[];
 	}
 
-	class Parser {
-		/**
-		 * @see cdocparser
-		 */
-		constructor(annotations: Annotations, config?: ParserConfig);
+	export type ContextParser = (
+		code: string,
+		lineNumberFor: (index?: number) => number,
+	) => Context;
 
-		commentParser: CommentParser;
+	type ExtractedComment = {
+		lines: string[];
+		type: "block" | "line" | "poster";
+		commentRange: Range;
+		context: Context;
+	};
 
-		parse(code: string, id?: string): Array<ParseResult>;
+	export class CommentExtractor {
+		constructor(contextParser: ContextParser, config?: ParserConfig);
 
-		/**
-		 * SCSS Context Parser
-		 */
-		contextParser(
-			contextCode: string,
-			lineNumberFor?: (index: number) => number,
-		): Context;
-
-		/**
-		 * Extract the code following `offset` in `code` buffer,
-		 * delimited by braces.
-		 *
-		 * `offset` should be set to the position of the opening brace. If not,
-		 * the function will jump to the next opening brace.
-		 */
-		extractCode(code: string, offset: number): string;
+		extract(code: string): ExtractedComment[];
 	}
 }
