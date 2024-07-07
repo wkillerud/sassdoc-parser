@@ -1,22 +1,22 @@
 {
-	"name": "scss-sassdoc-parser",
-	"version": "3.2.0",
+	"name": "sassdoc-parser",
+	"version": "1.0.0",
 	"engines": {
 		"node": ">=20"
 	},
-	"description": "A more lightweight parser for SassDoc, with TypeScript definitions.",
+	"description": "A lightweight parser for SassDoc.",
 	"keywords": [
 		"sassdoc",
 		"scss",
 		"sass"
 	],
-	"homepage": "https://github.com/wkillerud/scss-sassdoc-parser#readme",
+	"homepage": "https://github.com/wkillerud/sassdoc-parser#readme",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/wkillerud/scss-sassdoc-parser.git"
+		"url": "https://github.com/wkillerud/sassdoc-parser.git"
 	},
 	"bugs": {
-		"url": "https://github.com/wkillerud/scss-sassdoc-parser/issues"
+		"url": "https://github.com/wkillerud/sassdoc-parser/issues"
 	},
 	"files": [
 		"dist",
