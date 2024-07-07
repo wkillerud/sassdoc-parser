@@ -19,9 +19,7 @@ export type {
 	ParseResult,
 };
 
-export interface ParserConfig extends CDocParserConfig {
-	syntax?: "scss" | "indented";
-}
+export interface ParserConfig extends CDocParserConfig {}
 
 // Look for strings starting with @ (an at-rule like @mixin or @function) or % (placeholder selector) or $ (variable) followed by an identifier.
 const contextRe =
@@ -30,10 +28,8 @@ const contextRe =
 class Parser {
 	commentParser: CommentParser;
 	private extractor: CommentExtractor;
-	private syntax: "scss" | "indented";
 
 	constructor(annotations: Annotations, config?: ParserConfig) {
-		this.syntax = config?.syntax || "scss";
 		this.commentParser = new CommentParser(annotations, config);
 		this.extractor = new CommentExtractor(this.contextParser.bind(this), {
 			blockComment: false,

@@ -82,7 +82,6 @@ const result = parseSync(
 
 	@return $value * map.get($units, $unit)
 `,
-	{ syntax: "indented" },
 );
 ```
 

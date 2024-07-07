@@ -85,7 +85,6 @@ class Parser {
 
 export type ParseOptions = {
 	id?: string;
-	syntax?: "scss" | "indented";
 	parserConfig?: ParserConfig;
 };
 
@@ -101,7 +100,7 @@ export type ParseOptions = {
  *  await parse(`
  *    /// Main color
  *    $stardew: #ffffff
- *  `, { syntax: "indented" });
+ *  `);
  */
 export async function parse(
 	code: string,
@@ -123,7 +122,7 @@ export async function parse(
  *  parseSync(`
  *    /// Main color
  *    $stardew: #ffffff
- *  `, { syntax: "indented" });
+ *  `);
  */
 export function parseSync(
 	code: string,
