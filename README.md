@@ -91,3 +91,30 @@ The result from the `parse` function is an array of [`ParseResult` (type definit
 
 - [Example output for SCSS](/src/sassdoc-parser.test.ts)
 - [Example output for indented](/src/sassdoc-parser-indented.test.ts)
+
+## Advanced usage
+
+If you're running this parser on a hot code path, you might discover a noticable time is spent constructing the `Parser` class. The `parse` and `parseSync` methods create a new instance of this parser for each invocation. To reuse the same parser instance,
+import the `Parser` class and use that instead.
+
+```js
+import { Parser } from "sassdoc-parser";
+
+const parser = new Parser();
+
+const result = await parser.parseString(`
+/// Keeps it secret
+/// @output Sets display to hidden
+@mixin _keep-it-secret {
+  display: hidden;
+}
+`);
+
+const syncResult = parser.parseStringSync(`
+/// Keeps it secret
+/// @output Sets display to hidden
+@mixin _keep-it-secret {
+  display: hidden;
+}
+`);
+```

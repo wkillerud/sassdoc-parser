@@ -7,7 +7,7 @@ import sorter from "./sorter.js";
 import type { ParseResult } from "./types.js";
 import { removeReduntantWhitespace } from "./utils.js";
 
-class Parser {
+export class Parser {
 	annotations: AnnotationsApi;
 	commentParser: SassCommentParser;
 
