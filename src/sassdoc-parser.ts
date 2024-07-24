@@ -7,6 +7,21 @@ import sorter from "./sorter.js";
 import type { ParseResult } from "./types.js";
 import { removeReduntantWhitespace } from "./utils.js";
 
+/**
+ * If you're running {@link parse} or {@link parseSync} on a hot code path,
+ * you might discover a noticable time is spent constructing this Parser class
+ * since they create a new instance of this parser for each invocation.
+ *
+ * For performance sensitive applications you may want to import this class and
+ * reuse the parser instance.
+ *
+ * @example
+ * const parser = new Parser();
+ * const result = parser.parseStringSync(`
+ * /// Keep it secret
+ * $_secret: 'keep-it-safe';
+ * `);
+ */
 export class Parser {
 	annotations: AnnotationsApi;
 	commentParser: SassCommentParser;
