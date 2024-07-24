@@ -1,11 +1,17 @@
-# scss-sassdoc-parser
+# sassdoc-parser
 
-A lightweight parser for SassDoc.
+A lightweight parser for [SassDoc](http://sassdoc.com/). Similar to running `sassdoc --parse`, this parser outputs a structured [data interface](http://sassdoc.com/data-interface/) rather than HTML. This module is designed to be bundled, and can run in the browser.
+
+## Install
+
+```sh
+npm install sassdoc-parser
+```
 
 ## Usage
 
 ```ts
-import { parse } from "scss-sassdoc-parser";
+import { parse } from "sassdoc-parser";
 
 async function doParse() {
   const result = await parse(`
@@ -22,7 +28,7 @@ doParse();
 Or sync
 
 ```ts
-import { parseSync } from "scss-sassdoc-parser";
+import { parseSync } from "sassdoc-parser";
 
 const result = parseSync(`
 /// Keeps it secret
@@ -37,7 +43,7 @@ const result = parseSync(`
 
 ```ts
 import fs from "node:fs/promises";
-import { parse } from "scss-sassdoc-parser";
+import { parse } from "sassdoc-parser";
 
 export async function doParse(path: string | string[]): Promise<ParseResult[]> {
 	const paths = Array.isArray(path) ? path : [path];
@@ -61,7 +67,7 @@ The parser can handle indented syntax with a caveat:
 - The `context` field will not include accurate `code` or `line` fields.
 
 ```js
-import { parseSync } from "scss-sassdoc-parser";
+import { parseSync } from "sassdoc-parser";
 
 const result = parseSync(
 	`
