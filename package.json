@@ -40,8 +40,7 @@
 		"compile": "tsc -b ./tsconfig.cjs.json ./tsconfig.esm.json ./tsconfig.types.json",
 		"dev": "tsc -w",
 		"lint": "eslint 'src/**/*.ts'",
-		"test": "vitest",
-		"prepublishOnly": "npm run build && npm run lint && npm run test"
+		"test": "vitest"
 	},
 	"author": "William Killerud <william@killerud.com> (https://www.williamkillerud.com/)",
 	"license": "MIT",
