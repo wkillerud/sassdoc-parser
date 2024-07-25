@@ -12,6 +12,7 @@ module.exports = {
 				tarballDir: "dist",
 			},
 		],
+		"semantic-release-publint",
 		[
 			"@semantic-release/github",
 			{
