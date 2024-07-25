@@ -46,18 +46,17 @@
 	"license": "MIT",
 	"devDependencies": {
 		"@semantic-release/git": "^10.0.1",
-		"@semantic-release/github": "^9.2.4",
-		"@typescript-eslint/eslint-plugin": "^6.13.2",
-		"@typescript-eslint/parser": "^6.13.2",
+		"@types/node": "^20.14.12",
+		"@typescript-eslint/eslint-plugin": "^7.17.0",
+		"@typescript-eslint/parser": "^7.17.0",
 		"eslint": "^8.15.0",
 		"eslint-config-prettier": "^9.1.0",
-		"eslint-plugin-import": "^2.26.0",
 		"eslint-plugin-prettier": "^5.0.1",
-		"prettier": "^3.1.0",
-		"semantic-release": "^22.0.8",
-		"semantic-release-publint": "^1.0.0",
-		"typescript": "^5.0.0",
-		"vitest": "^1.0.0"
+		"prettier": "^3.3.3",
+		"semantic-release": "^24.0.0",
+		"semantic-release-publint": "^1.0.1",
+		"typescript": "^5.5.4",
+		"vitest": "^2.0.4"
 	},
 	"dependencies": {
 		"cdocparser": "0.15.0"
